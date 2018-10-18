@@ -1,0 +1,52 @@
+<div class="main">
+    <div style="padding-top: 5%" class="container">
+            <h2>Create an Account</h2>
+        <div style="background: green; color: white; text-align: center;" ng-show="testing == '00'" class="col-md-12">
+            <h3>Registration Successful, Please check your email for the Activation link to Activate your Account</h3>
+        </div>
+        <div style="background: red; color: white; text-align: center;" ng-show="testing.code == '03'" class="col-md-12">
+            <h3>{{testing.message}}</h3>
+        </div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="firstname">FIRST NAME:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter first name" name="firstname" ng-model="firstname">
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="lastname">LAST NAME:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="lastname" placeholder="Enter last name" name="lastname" ng-model="lastname">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="email">EMAIL:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="mobile">MOBILE:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile" ng-model="mobile">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="password">PASSWORD:</label>
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" id="password" placeholder="Enter password" name="password" ng-model="password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                    <button style="width: 100%" type="submit" class="btn btn-info" ng-click="registernew(firstname, lastname, email, mobile, password)">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

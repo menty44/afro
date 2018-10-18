@@ -1,0 +1,71 @@
+<div class="main">
+    <div style="padding-top: 5%; padding-bottom: 10%" class="container">
+        <h2>Log In To Your Account</h2>
+        <div style="padding-top: 2%">
+        <div ng-hide="mydivs == true" >
+            <div style="background: greenyellow; color: white; text-align: center;" ng-show="fred == '00'" class="col-md-12">
+                <h3>{{test}}</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="statustest500 == 500" class="col-md-12">
+                <h3>Invalid login credentials</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="status == 400" class="col-md-12">
+                <h3>Invalid login credentials</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="status == 404" class="col-md-12">
+                <h3>Invalid login credentials</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="testfinal" class="col-md-12">
+                <h3>Invalid login credentials</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="bad =='03'" class="col-md-12">
+                <h3>Invalid login credentials</h3>
+            </div>
+        </div>
+
+        <div ng-hide="mydivs == true" >
+            <div style="background: red; color: white; text-align: center;" ng-show="badmissin =='23'" class="col-md-12">
+                <h3>{{testing.message}}</h3>
+            </div>
+        </div>
+        </div>
+
+
+        <form class="form-horizontal">
+
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="email">EMAIL:</label>
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" ng-model="email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="color: #28a745;" class="control-label col-sm-2" for="password">PASSWORD:</label>
+                <div class="col-sm-12">
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" ng-model="password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                    <button style="width: 100%" type="submit" class="btn btn-info" ng-click="loginacc(email,password)">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
