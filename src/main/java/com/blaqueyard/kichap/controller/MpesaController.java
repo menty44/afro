@@ -5,8 +5,6 @@ package com.blaqueyard.kichap.controller;
  */
 
 
-import com.blaqueyard.kichap.logic.EmailHtmlSender;
-import com.blaqueyard.kichap.logic.EmailStatus;
 import com.blaqueyard.kichap.model.Gender;
 import com.blaqueyard.kichap.model.MpesastkPush;
 import com.blaqueyard.kichap.repository.MpesastkpushRepository;
@@ -16,6 +14,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
@@ -24,10 +23,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 //import org.springframework.jms.core.JmsTemplate;
 
@@ -73,9 +69,22 @@ public class MpesaController {
 
     @PostMapping("/sendtx")
     public void send(@RequestBody Gender gender) {
+
         System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT +"Sending a transaction."+ ConsoleColors.RESET);
         // Post message to the message queue named "OrderTransactionQueue"
         jmsTemplate.convertAndSend("OrderTransactionQueue", gender);
+    }
+
+    @PostMapping("/map")
+    public void map() {
+        Map<String,String> response = new HashMap<String, String>();
+        System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT +"Sending a MAP transaction."+ ConsoleColors.RESET);
+
+        response.put("mg", "pass");
+        response.put("code", "0");
+        response.put("desc", "activemq test");
+        // Post message to the message queue named "OrderTransactionQueue"
+        jmsTemplate.convertAndSend("MAPQueue", ResponseEntity.ok().body(response).toString());
     }
 
     @CrossOrigin
@@ -142,7 +151,7 @@ public class MpesaController {
     public String getRevo(@RequestParam(value = "number", defaultValue = "not available") String number,
                           @RequestParam(value = "amount", defaultValue = "not available") String amount) throws IOException, ParseException {
 
-        System.out.println(ConsoleColors.BLUE_BRIGHT+"amount: "+amount+" number: "+number);
+        System.out.println(ConsoleColors.BLUE_BRIGHT+"amount: "+amount+" number: "+number+ConsoleColors.RESET);
 
         Auth a = new Auth("GvzjNnYgNJtwgwfLBkZh65VPwfuKvs0V", "oOpJICRVlyrGSAkM");
 
