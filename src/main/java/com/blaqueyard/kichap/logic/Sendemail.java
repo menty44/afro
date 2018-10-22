@@ -6,7 +6,6 @@ package com.blaqueyard.kichap.logic;
  */
 
 import com.blaqueyard.kichap.controller.ConsoleColors;
-import org.springframework.http.ResponseEntity;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -25,7 +24,8 @@ import java.util.Properties;
 
 public class Sendemail {
 
-    public ResponseEntity<Map<String,String>> email(String persona, String msg) throws IOException {
+//    public ResponseEntity<Map<String,String>> email(String persona, String msg) throws IOException {
+    public void email(String persona, String msg) throws IOException {
 
         Map<String,String> response = new HashMap<String, String>();
 
@@ -58,21 +58,22 @@ public class Sendemail {
 
                 Transport.send(message);
 
-                System.out.println(ConsoleColors.CYAN_BOLD+"Done"+ConsoleColors.RESET);
+                System.out.println(ConsoleColors.CYAN_BOLD+"Done ! email has been sent!!!"+ConsoleColors.RESET);
 
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
 
+
             response.put("mg", "email has been sent");
             response.put("code", "00");
-            return ResponseEntity.ok().body(response);
+//            return ResponseEntity.ok().body(response);
 
         }else {
 
             response.put("msg", "some parameters are missing");
             response.put("code", "03");
-            return ResponseEntity.ok().body(response);
+//            return ResponseEntity.ok().body(response);
 
         }
 

@@ -10,6 +10,7 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Fredrick Oluoch
@@ -22,9 +23,10 @@ import java.io.IOException;
 public class MAPReceiver {
 
     @JmsListener(destination = "MAPQueue", containerFactory = "myFactory")
-    public void receiveMessage(String message) throws IOException {
+    public void receiveMessage(List message) throws IOException {
         System.out.println(ConsoleColors.GREEN_BRIGHT +"Received text via !!! ACTIVEMQ !!! <>" + ConsoleColors.RESET);
-        System.out.println(ConsoleColors.GREEN_BRIGHT +"Data !!! <" + message + ">" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BACKGROUND +"Data !!! <" + message + ">" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.YELLOW_BACKGROUND +"Data !!! <" + message.get(1) + ">" + ConsoleColors.RESET);
 
 
     }

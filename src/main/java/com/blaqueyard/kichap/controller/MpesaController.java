@@ -14,7 +14,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.context.Context;
@@ -80,11 +79,12 @@ public class MpesaController {
         Map<String,String> response = new HashMap<String, String>();
         System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT +"Sending a MAP transaction."+ ConsoleColors.RESET);
 
-        response.put("mg", "pass");
-        response.put("code", "0");
-        response.put("desc", "activemq test");
+        List a1 = new ArrayList();
+        a1.add("oluoch");
+        a1.add("Mahnaz");
+        a1.add("Ayan");
         // Post message to the message queue named "OrderTransactionQueue"
-        jmsTemplate.convertAndSend("MAPQueue", ResponseEntity.ok().body(response).toString());
+        jmsTemplate.convertAndSend("MAPQueue", a1);
     }
 
     @CrossOrigin

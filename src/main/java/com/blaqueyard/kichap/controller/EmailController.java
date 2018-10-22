@@ -4,12 +4,13 @@ package com.blaqueyard.kichap.controller;
  * Created by admin on 5/27/18.
  */
 
-import com.blaqueyard.kichap.logic.Sendemail;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Fredrick Oluoch
@@ -23,15 +24,26 @@ import java.util.Map;
 public class EmailController {
 
 
-
+    @Autowired
+    private JmsTemplate jmsTemplate;
 
     @CrossOrigin
     @RequestMapping(value = "/email", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<Map<String,String>> sendmail(@RequestParam(value = "persona") String persona,
+    public void sendmail(@RequestParam(value = "persona") String persona,
                                                        @RequestParam(value = "message") String msg) throws IOException {
 
-        Sendemail sendemail = new Sendemail();
-        return sendemail.email(persona, msg);
+        List a1 = new ArrayList();
+        a1.add(persona);
+        a1.add(msg);
+
+        // Post message to the message queue named "EmailQueue"
+        jmsTemplate.convertAndSend("EmailQueue", a1);
+
+//        JmsTemplate.receive("EmailQueue");
+
+
+//        Sendemail sendemail = new Sendemail();
+//        return sendemail.email(persona, msg);
 
     }
 
