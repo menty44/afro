@@ -5,10 +5,10 @@ package com.blaqueyard.kichap.controller;
  */
 
 
+import com.blaqueyard.kichap.logic.Scheduler;
 import com.blaqueyard.kichap.model.Gender;
 import com.blaqueyard.kichap.model.MpesastkPush;
 import com.blaqueyard.kichap.repository.MpesastkpushRepository;
-import com.oracle.tools.packager.Log;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,13 +16,15 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.context.Context;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+//import com.blaqueyard.kichap.model.Gender;
+//import com.blaqueyard.kichap.model.MpesastkPush;
 
 //import org.springframework.jms.core.JmsTemplate;
 
@@ -51,19 +53,12 @@ public class MpesaController {
         //jmsTemplate.convertAndSend("SMSQueue", gender);
     }
 
-    @GetMapping("/email")
-    public static String email() {
-        System.out.println(ConsoleColors.PURPLE_BRIGHT+"Sending a Email.");
+    @GetMapping("/cron")
+    public void cron() {
+        System.out.println(ConsoleColors.CYAN_BOLD+"Starting Delay scheduler.");
+        Scheduler schdedule = new Scheduler();
+        schdedule.fixedDelaySch();
 
-        Context context = new Context();
-        context.setVariable("title", "Lorem Ipsum");
-        context.setVariable("description", "Lorem Lorem Lorem");
-
-//        EmailStatus emailStatus = EmailHtmlSender.send("menty44@gmail.com", "Title of email", "email/template-1", context);
-
-        // Post message to the message queue named "OrderTransactionQueue"
-        //jmsTemplate.convertAndSend("SMSQueue", gender);
-        return "sent";
     }
 
     @PostMapping("/sendtx")
@@ -87,7 +82,7 @@ public class MpesaController {
         jmsTemplate.convertAndSend("MAPQueue", a1);
     }
 
-    @CrossOrigin
+//    @CrossOrigin
     @RequestMapping(value = "sendtext", method = RequestMethod.GET, produces = "application/json")
     public void sendtext(@RequestParam(value = "number", defaultValue = "not available") String number) throws IOException {
 
@@ -95,7 +90,7 @@ public class MpesaController {
         //Note Don't forget to use the RESET after printing as the effect will remain if it's not cleared
 
         System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Sending a text via !!! ACTIVEMQ !!!" + ConsoleColors.RESET);
-        Log.info("Sending a text via !!! ACTIVEMQ !!!");
+        //Log.info("Sending a text via !!! ACTIVEMQ !!!");
 
         // Post message to the message queue named "OrderTransactionQueue"
 //        jmsTemplate.convertAndSend("SMSQueue", number );

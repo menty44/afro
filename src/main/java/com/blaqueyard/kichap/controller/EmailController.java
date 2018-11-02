@@ -4,6 +4,7 @@ package com.blaqueyard.kichap.controller;
  * Created by admin on 5/27/18.
  */
 
+import com.blaqueyard.kichap.utils.Con;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,8 @@ public class EmailController {
         a1.add(msg);
 
         // Post message to the message queue named "EmailQueue"
-        jmsTemplate.convertAndSend("EmailQueue", a1);
+//        jmsTemplate.convertAndSend("EmailQueue", a1);
+        jmsTemplate.convertAndSend(Con.EMAIL_RCV_Q, a1);
 
 //        JmsTemplate.receive("EmailQueue");
 

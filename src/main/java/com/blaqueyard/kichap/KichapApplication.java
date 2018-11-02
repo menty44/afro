@@ -13,6 +13,7 @@ import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.jms.ConnectionFactory;
 
@@ -34,6 +35,7 @@ import javax.jms.ConnectionFactory;
 @ComponentScan(basePackages = "com.blaqueyard.kichap")
 @SpringBootApplication
 @EnableJms
+@EnableScheduling
 public class KichapApplication {
 
 	public static void main(String[] args) {

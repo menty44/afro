@@ -6,7 +6,6 @@ package com.blaqueyard.kichap.logic;
  */
 
 import com.blaqueyard.kichap.controller.ConsoleColors;
-import com.sun.deploy.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,8 +14,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 import static io.netty.handler.codec.rtsp.RtspHeaders.Names.USER_AGENT;
+
+//import com.sun.deploy.net.URLEncoder;
 
 /**
  * Fredrick Oluoch
