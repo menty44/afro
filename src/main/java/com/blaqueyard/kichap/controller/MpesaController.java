@@ -55,9 +55,9 @@ public class MpesaController {
 
     @GetMapping("/cron")
     public void cron() {
-        System.out.println(ConsoleColors.CYAN_BOLD+"Starting Delay scheduler.");
+        System.out.println(ConsoleColors.CYAN_BOLD+"Starting Delay scheduler."+ConsoleColors.RESET);
         Scheduler schdedule = new Scheduler();
-        schdedule.fixedDelaySch();
+      //  schdedule.fixedDelaySch();
 
     }
 
