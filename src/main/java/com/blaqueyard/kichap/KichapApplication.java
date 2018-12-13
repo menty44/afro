@@ -2,6 +2,7 @@ package com.blaqueyard.kichap;
 
 //import org.apache.camel.language.Bean;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
@@ -34,6 +35,7 @@ import javax.jms.ConnectionFactory;
 @ComponentScan(basePackages = "com.blaqueyard.kichap")
 @SpringBootApplication
 @EnableJms
+@EnableRabbit
 public class KichapApplication {
 
 	public static void main(String[] args) {

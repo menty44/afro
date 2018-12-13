@@ -14,12 +14,17 @@ package com.blaqueyard.kichap.controller;
 
 import com.blaqueyard.kichap.model.DBFile;
 import com.blaqueyard.kichap.payload.UploadFileResponse;
+import com.blaqueyard.kichap.repository.DBFileRepository;
 import com.blaqueyard.kichap.service.DBFileStorageService;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,6 +47,25 @@ public class FileController {
 
     @Autowired
     private DBFileStorageService dbFileStorageService;
+
+
+    @Autowired
+    private DBFileRepository dbFileRepository;
+
+
+    @GetMapping("/myfiles")
+    public Page<DBFile> getFiles(Pageable pageable) {
+        return dbFileRepository.findAll(pageable);
+    }
+
+//    @GetMapping("/pdf", produces = "application/json")
+    @RequestMapping(value = "/pdf", method = RequestMethod.GET, produces = "application/pdf")
+    public Document mypdf() throws IOException, DocumentException {
+
+        Document document = new Document();
+//
+        return  document;
+    }
 
     @PostMapping("/uploadFile")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file) {

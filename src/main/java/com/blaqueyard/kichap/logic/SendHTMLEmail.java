@@ -1,6 +1,6 @@
 package com.blaqueyard.kichap.logic;
 
-
+//import org.telegram.updateshandlers.*;
 /**
  * Created by admin on 10/22/18.
  */
@@ -16,6 +16,10 @@ package com.blaqueyard.kichap.logic;
 public class SendHTMLEmail {
 
     public static void main(String [] args) {
+
+//        //create a new Telegram bot object to start talking with Telegram
+//        TelegramBot bot = TelegramBotAdapter.build("716595815:AAEYVEP_EgTjPd3JLkGHXkIDGs_uvxtyJcU");
+//        bot.sendMessage("@pizzaciaopizza", "I love Pizza");
 //        final String username = "info@blaqueyard.com";
 //        final String password = "XZB9O6G8fred";
 //
