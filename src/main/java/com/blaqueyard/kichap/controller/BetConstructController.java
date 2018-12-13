@@ -190,7 +190,7 @@ public class BetConstructController {
 
         Incomingsmscallback sms = new Incomingsmscallback();
 
-//        sms.setId(generatedLong);
+        //sms.setId(generatedLong);
         sms.setMessfrom(from);
         sms.setMessto(to);
         sms.setText(text);
